@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Scaffolding Inspection Checklist</title>
+
+<!-- PDF export library (only needed for the Download PDF button) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.14.0/html2pdf.bundle.min.js"></script>
+<!-- Real .docx (Word) export library (only needed for the Download Word button) -->
+<script src="https://cdn.jsdelivr.net/npm/html-docx-js@0.3.1/dist/html-docx.min.js"></script>
+
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- STICKY TOOLBAR (stays visible while scrolling) -->
+<div class="toolbar">
+    <span class="toolbar-title">Scaffolding Inspection Checklist</span>
+    <button class="btn btn-pdf" id="downloadPdfBtn" type="button">⬇ Download PDF</button>
+    <button class="btn btn-word" id="downloadWordBtn" type="button">⬇ Download Word</button>
+    <button class="btn btn-reset" type="reset" form="printable">↺ Reset Form</button>
+</div>
+
+<!-- PRINTABLE / EXPORTABLE FORM -->
+<form id="printable">
+
+    <!-- HEADER -->
+    <div class="header">
+        <h1>Scaffolding Inspection Checklist</h1>
+        <div class="header-info">
+            <div class="info-field">
+                <span class="info-label">Site/Project Name:</span>
+                <input type="text" class="info-input" />
+            </div>
+            <div class="info-field">
+                <span class="info-label">Inspection Date:</span>
+                <input type="date" class="info-input" />
+            </div>
+            <div class="info-field">
+                <span class="info-label">Scaffold Location/ID:</span>
+                <input type="text" class="info-input" />
+            </div>
+            <div class="info-field">
+                <span class="info-label">Scaffold Type:</span>
+                <input type="text" class="info-input" placeholder="e.g., Frame, Tube & Clamp, System" />
+            </div>
+            <div class="info-field">
+                <span class="info-label">Height:</span>
+                <input type="text" class="info-input" placeholder="ft" />
+            </div>
+            <div class="info-field">
+                <span class="info-label">Load Rating:</span>
+                <input type="text" class="info-input" placeholder="lbs" />
+            </div>
+        </div>
+    </div>
+
+    <!-- INFO BOX -->
+    <div class="info-box">
+        <div class="info-text">
+            <strong>OSHA Requirement (29 CFR 1926.451):</strong> Scaffolds must be inspected by a competent person before each work shift and after any occurrence that could affect structural integrity. Document all inspections.
+        </div>
+    </div>
+
+    <!-- STATUS SUMMARY -->
+    <div class="status-summary">
+        <label class="status-item">
+            <span class="radio-wrap-large">
+                <input type="radio" name="overall-status" value="Safe to Use" class="radio-hidden" />
+                <span class="radio-box-large"></span>
+            </span>
+            <span class="checkbox-label">SAFE TO USE</span>
+        </label>
+        <label class="status-item">
+            <span class="radio-wrap-large">
+                <input type="radio" name="overall-status" value="Needs Repair" class="radio-hidden" />
+                <span class="radio-box-large"></span>
+            </span>
+            <span class="checkbox-label">NEEDS REPAIR</span>
+        </label>
+        <label class="status-item">
+            <span class="radio-wrap-large">
+                <input type="radio" name="overall-status" value="Do Not Use - Tag Out" class="radio-hidden" />
+                <span class="radio-box-large"></span>
+            </span>
+            <span class="checkbox-label">DO NOT USE - TAG OUT</span>
+        </label>
+    </div>
+
+    <!-- SECTION 1: STRUCTURAL INTEGRITY & FOUNDATIONS -->
+    <h2>1. Structural Integrity & Foundations</h2>
+    <div class="checklist-section">
+        <div class="checklist-item">
+            <div class="item-text">Base plates/mud sills on solid, level surface</div>
+            <div class="checkbox-container">
+                <label class="checkbox-option"><span class="radio-wrap-small"><input type="radio" name="item-1" value="OK" class="radio-hidden" /><span class="radio-box-small"></span></span><span class="checkbox-option-label">OK</span></label>
+                <label class="checkbox-option"><span class="radio-wrap-small"><input type="radio" name="item-1" value="Issue" class="radio-hidden" /><span class="radio-box-small"></span></span><span class="checkbox-option-label">Issue</span></label>
+                <label class="checkbox-option"><span class="radio-wrap-small"><input type="radio" name="item-1" value="N/A" class="radio-hidden" /><span class="radio-box-small"></span></span><span class="checkbox-option-label">N/A</span></label>
+            </div>
+        </div>
+        <div class="checklist-item">
+            <div class="item-text">Scaffold plumb, square, and level</div>
+            <div class="checkbox-container">
+                <label class="checkbox-option"><span class="radio-wrap-small"><input type="radio" name="item-2" value="OK" class="radio-hidden" /><span class="radio-box-small"></span></span><span class="checkbox-option-label">OK</span></label>
+                <label class="checkbox-option"><span class="radio-wrap-small"><input type="radio" name="item-2" value="Issue" class="radio-hidden" /><span class="radio-box-small"></span></span><span class="checkbox-option-label">Issue</span></label>
+                <label class="checkbox-option"><span class="radio-wrap-small"><input type="radio" name="item-2" value="N/A" class="radio-hidden" /><span class="radio-box-small"></span></span><span class="checkbox-option-label">N/A</span></label>
+            </div>
+        </div>
+        <div class="checklist-item">
+            <div class="item-text">All frames/posts securely in place (no bent/damaged components)</div>
+            <div class="checkbox-container">
+                <label class="checkbox-option"><span class="radio-wrap-small"><input type="radio" name="item-3" value="OK" class="radio-hidden" /><span class="radio-box-small"></span></span><span class="checkbox-option-label">OK</span></label>
+                <label class="checkbox-option"><span class="radio-wrap-small"><input type="radio" name="item-3" value="Issue" class="radio-hidden" /><span class="radio-box-small"></span></span><span class="checkbox-option-label">Issue</span></label>
+                <label class="checkbox-option"><span class="radio-wrap-small"><input type="radio" name="item-3" value="N/A" class="radio-hidden" /><span class="radio-box-small"></span></span><span class="checkbox-option-label">N/A</span></label>
+            </div>
+        </div>
+        <div class="checklist-item">
+            <div class="item-text">Braces (horizontal and diagonal) installed and secured</div>
+            <div class="checkbox-container">
+                <label class="checkbox-option"><span class="radio-wrap-small"><input type="radio" name="item-4" value="OK" class="radio-hidden" /><span class="radio-box-small"></span></span><span class="checkbox-option-label">OK</span></label>
+                <label class="checkbox-option"><span class="radio-wrap-small"><input type="radio" name="item-4" value="Issue" class="radio-hidden" /><span class="radio-box-small"></span></span><span class="checkbox-option-label">Issue</span></label>
+                <label class="checkbox-option"><span class="radio-wrap-small"><input type="radio" name="item-4" value="N/A" class="radio-hidden" /><span class="radio-box-small"></span></span><span class="checkbox-option-label">N/A</span></label>
+            </div>
+        </div>
+        <div class="checklist-item">
+            <div class="item-text">Scaffold tied to structure (every 4:1 ratio - height to base)</div>
+            <div class="checkbox-container">
+                <label class="checkbox-option"><span class="radio-wrap-small"><input type="radio" name="item-5" value="OK" class="radio-hidden" /><span class="radio-box-small"></span></span><span class="checkbox-option-label">OK</span></label>
+                <label class="checkbox-option"><span class="radio-wrap-small"><input type="radio" name="item-5" value="Issue" class="radio-hidden" /><span class="radio-box-small"></span></span><span class="checkbox-option-label">Issue</span></label>
+                <label class="checkbox-option"><span class="radio-wrap-small"><input type="radio" name="item-5" value="N/A" class="radio-hidden" /><span class="radio-box-small"></span></span><span class="checkbox-option-label">N/A</span></label>
+            </div>
+        </div>
+        <div class="checklist-item">
+            <div class="item-text">No signs of settlement, shifting, or instability</div>
+            <div class="checkbox-container">
+                <label class="checkbox-option"><span class="radio-wrap-small"><input type="radio" name="item-6" value="OK" class="radio-hidden" /><span class="radio-box-small"></span></span><span class="checkbox-option-label">OK</span></label>
+                <label class="checkbox-option"><span class="radio-wrap-small"><input type="radio" name="item-6" value="Issue" class="radio-hidden" /><span class="radio-box-small"></span></span><span class="checkbox-option-label">Issue</span></label>
+                <label class="checkbox-option"><span class="radio-wrap-small"><input type="radio" name="item-6" value="N/A" class="radio-hidden" /><span class="radio-box-small"></span></span><span class="checkbox-option-label">N/A</span></label>
+            </div>
+        </div>
+    </div>
+
+    <!-- SECTION 2: PLATFORMS & PLANKING -->
+    <h2>2. Platforms & Planking</h2>
+    <div class="checklist-section">
+        <div class="checklist-item">
+            <div class="item-text">Planks fully decked (no gaps greater than 1 inch)</div>
+            <div class="checkbox-container">
+                <label class="checkbox-option"><span class="radio-wrap-small"><input type="radio" name="item-7" value="OK" class="radio-hidden" /><span class="radio-box-small"></span></span><span class="checkbox-option-label">OK</span></label>
+                <label class="checkbox-option"><span class="radio-wrap-small"><input type="radio" name="item-7" value="Issue" class="radio-hidden" /><span class="radio-box-small"></span></span><span class="checkbox-option-label">Issue</span></label>
+                <label class="checkbox-option"><span class="radio-wrap-small"><input type="radio" name="item-7" value="N/A" class="radio-hidden" /><span class="radio-box-small"></span></span><span class="checkbox-option-label">N/A</span></label>
+            </div>
+        </div>
+        <div class="checklist-item">
+            <div class="item-text">Planks properly secured (cleated, pinned, or otherwise secured)</div>
+            <div class="checkbox-container">
+                <label class="checkbox-option"><span class="radio-wrap-small"><input type="radio" name="item-8" value="OK" class="radio-hidden" /><span class="radio-box-small"></span></span><span class="checkbox-option-label">OK</span></label>
+                <label class="checkbox-option"><span class="radio-wrap-small"><input type="radio" name="item-8" value="Issue" class="radio-hidden" /><span class="radio-box-small"></span></span><span class="checkbox-option-label">Issue</span></label>
+                <label class="checkbox-option"><span class="radio-wrap-small"><input type="radio" name="item-8" value="N/A" class="radio-hidden" /><span class="radio-box-small"></span></span><span class="checkbox-option-label">N/A</span></label>
+            </div>
+        </div>
+        <div class="checklist-item">
+            <div class="item-text">Platform minimum 18 inches wide (fully planked)</div>
+            <div class="checkbox-container">
+                <label class="checkbox-option"><span class="radio-wrap-small"><input type="radio" name="item-9" value="OK" class="radio-hidden" /><span class="radio-box-small"></span></span><span class="checkbox-option-label">OK</span></label>
+                <label class="checkbox-option"><span class="radio-wrap-small"><input type="radio" name="item-9" value="Issue" class="radio-hidden" /><span class="radio-box-small"></span></span><span class="checkbox-option-label">Issue</span></label>
+                <label class="checkbox-option"><span class="radio-wrap-small"><input type="radio" name="item-9" value="N/A" class="radio-hidden" /><span class="radio-box-small"></span></span><span class="checkbox-option-label">N/A</span></label>
+            </div>
+        </div>
+        <div class="checklist-item">
+            <div class="item-text">No cracked, split, or damaged planks</div>
+            <div class="checkbox-container">
+                <label class="checkbox-option"><span class="radio-wrap-small"><input type="radio" name="item-10" value="OK" class="radio-hidden" /><span class="radio-box-small"></span></span><span class="checkbox-option-label">OK</span></label>
+                <label class="checkbox-option"><span class="radio-wrap-small"><input type="radio" name="item-10" value="Issue" class="radio-hidden" /><span class="radio-box-small"></span></span><span class="checkbox-option-label">Issue</span></label>
+                <label class="checkbox-option"><span class="radio-wrap-small"><input type="radio" name="item-10" value="N/A" class="radio-hidden" /><span class="radio-box-small"></span></span><span class="checkbox-option-label">N/A</span></label>
+            </div>
+        </div>
+        <div class="checklist-item">
+            <div class="item-text">Planks extend over supports 6-12 inches (no more, no less)</div>
+            <div class="checkbox-container">
+                <label class="checkbox-option"><span class="radio-wrap-small"><input type="radio" name="item-11" value="OK" class="radio-hidden" /><span class="radio-box-small"></span></span><span class="checkbox-option-label">OK</span></label>
+                <label class="checkbox-option"><span class="radio-wrap-small"><input type="radio" name="item-11" value="Issue" class="radio-hidden" /><span class="radio-box-small"></span></span><span class="checkbox-option-label">Issue</span></label>
+                <label class="checkbox-option"><span class="radio-wrap-small"><input type="radio" name="item-11" value="N/A" class="radio-hidden" /><span class="radio-box-small"></span></span><span class="checkbox-option-label">N/A</span></label>
+            </div>
+        </div>
+        <div class="checklist-item">
+            <div class="item-text">Platform free of tools, debris, and unnecessary materials</div>
+            <div class="checkbox-container">
+                <label class="checkbox-option"><span class="radio-wrap-small"><input type="radio" name="item-12" value="OK" class="radio-hidden" /><span class="radio-box-small"></span></span><span class="checkbox-option-label">OK</span></label>
+                <label class="checkbox-option"><span class="radio-wrap-small"><input type="radio" name="item-12" value="Issue" class="radio-hidden" /><span class="radio-box-small"></span></span><span class="checkbox-option-label">Issue</span></label>
+                <label class="checkbox-option"><span class="radio-wrap-small"><input type="radio" name="item-12" value="N/A" class="radio-hidden" /><span class="radio-box-small"></span></span><span class="checkbox-option-label">N/A</span></label>
+            </div>
+        </div>
+    </div>
+
+    <!-- SECTION 3: FALL PROTECTION & GUARDRAILS -->
+    <h2>3. Fall Protection & Guardrails</h2>
+    <div class="checklist-section">
+        <div class="checklist-item">
+            <div class="item-text">Top rail at 42 inches (± 3 inches) above platform</div>
+            <div class="checkbox-container">
+                <label class="checkbox-option"><span class="radio-wrap-small"><input type="radio" name="item-13" value="OK" class="radio-hidden" /><span class="radio-box-small"></span></span><span class="checkbox-option-label">OK</span></label>
+                <label class="checkbox-option"><span class="radio-wrap-small"><input type="radio" name="item-13" value="Issue" class="radio-hidden" /><span class="radio-box-small"></span></span><span class="checkbox-option-label">Issue</span></label>
+                <label class="checkbox-option"><span class="radio-wrap-small"><input type="radio" name="item-13" value="N/A" class="radio-hidden" /><span class="radio-box-small"></span></span><span class="checkbox-option-label">N/A</span></label>
+            </div>
+        </div>
+        <div class="checklist-item">
+            <div class="item-text">Mid-rail installed at approximately 21 inches</div>
+            <div class="checkbox-container">
+                <label class="checkbox-option"><span class="radio-wrap-small"><input type="radio" name="item-14" value="OK" class="radio-hidden" /><span class="radio-box-small"></span></span><span class="checkbox-option-label">OK</span></label>
+                <label class="checkbox-option"><span class="radio-wrap-small"><input type="radio" name="item-14" value="Issue" class="radio-hidden" /><span class="radio-box-small"></span></span><span class="checkbox-option-label">Issue</span></label>
+                <label class="checkbox-option"><span class="radio-wrap-small"><input type="radio" name="item-14" value="N/A" class="radio-hidden" /><span class="radio-box-small"></span></span><span class="checkbox-option-label">N/A</span></label>
+            </div>
+        </div>
+        <div class="checklist-item">
+            <div class="item-text">Toe boards at least 3.5 inches high (where required)</div>
+            <div class="checkbox-container">
+                <label class="checkbox-option"><span class="radio-wrap-small"><input type="radio" name="item-15" value="OK" class="radio-hidden" /><span class="radio-box-small"></span></span><span class="checkbox-option-label">OK</span></label>
+                <label class="checkbox-option"><span class="radio-wrap-small"><input type="radio" name="item-15" value="Issue" class="radio-hidden" /><span class="radio-box-small"></span></span><span class="checkbox-option-label">Issue</span></label>
+                <label class="checkbox-option"><span class="radio-wrap-small"><input type="radio" name="item-15" value="N/A" class="radio-hidden" /><span class="radio-box-small"></span></span><span class="checkbox-option-label">N/A</span></label>
+            </div>
+        </div>
+        <div class="checklist-item">
+            <div class="item-text">Guardrails on all open sides and ends (platforms 10 ft or higher)</div>
+            <div class="checkbox-container">
+                <label class="checkbox-option"><span class="radio-wrap-small"><input type="radio" name="item-16" value="OK" class="radio-hidden" /><span class="radio-box-small"></span></span><span class="checkbox-option-label">OK</span></label>
+                <label class="checkbox-option"><span class="radio-wrap-small"><input type="radio" name="item-16" value="Issue" class="radio-hidden" /><span class="radio-box-small"></span></span><span class="checkbox-option-label">Issue</span></label>
+                <label class="checkbox-option"><span class="radio-wrap-small"><input type="radio" name="item-16" value="N/A" class="radio-hidden" /><span class="radio-box-small"></span></span><span class="checkbox-option-label">N/A</span></label>
+            </div>
+        </div>
+        <div class="checklist-item">
+            <div class="item-text">No gaps or openings that allow person or object to fall through</div>
+            <div class="checkbox-container">
+                <label class="checkbox-option"><span class="radio-wrap-small"><input type="radio" name="item-17" value="OK" class="radio-hidden" /><span class="radio-box-small"></span></span><span class="checkbox-option-label">OK</span></label>
+                <label class="checkbox-option"><span class="radio-wrap-small"><input type="radio" name="item-17" value="Issue" class="radio-hidden" /><span class="radio-box-small"></span></span><span class="checkbox-option-label">Issue</span></label>
+                <label class="checkbox-option"><span class="radio-wrap-small"><input type="radio" name="item-17" value="N/A" class="radio-hidden" /><span class="radio-box-small"></span></span><span class="checkbox-option-label">N/A</span></label>
+            </div>
+        </div>
+        <div class="checklist-item">
+            <div class="item-text">Guardrails capable of withstanding 200 lbs force (rigid, no damage)</div>
+            <div class="checkbox-container">
+                <label class="checkbox-option"><span class="radio-wrap-small"><input type="radio" name="item-18" value="OK" class="radio-hidden" /><span class="radio-box-small"></span></span><span class="checkbox-option-label">OK</span></label>
+                <label class="checkbox-option"><span class="radio-wrap-small"><input type="radio" name="item-18" value="Issue" class="radio-hidden" /><span class="radio-box-small"></span></span><span class="checkbox-option-label">Issue</span></label>
+                <label class="checkbox-option"><span class="radio-wrap-small"><input type="radio" name="item-18" value="N/A" class="radio-hidden" /><span class="radio-box-small"></span></span><span class="checkbox-option-label">N/A</span></label>
+            </div>
+        </div>
+    </div>
+
+    <!-- SECTION 4: ACCESS & EGRESS -->
+    <h2>4. Access & Egress</h2>
+    <div class="checklist-section">
+        <div class="checklist-item">
+            <div class="item-text">Safe access provided (ladder, stair tower, or ramp)</div>
+            <div class="checkbox-container">
+                <label class="checkbox-option"><span class="radio-wrap-small"><input type="radio" name="item-19" value="OK" class="radio-hidden" /><span class="radio-box-small"></span></span><span class="checkbox-option-label">OK</span></label>
+                <label class="checkbox-option"><span class="radio-wrap-small"><input type="radio" name="item-19" value="Issue" class="radio-hidden" /><span class="radio-box-small"></span></span><span class="checkbox-option-label">Issue</span></label>
+                <label class="checkbox-option"><span class="radio-wrap-small"><input type="radio" name="item-19" value="N/A" class="radio-hidden" /><span class="radio-box-small"></span></span><span class="checkbox-option-label">N/A</span></label>
+            </div>
+        </div>
+        <div class="checklist-item">
+            <div class="item-text">Ladder secured and extends 3 ft above platform</div>
+            <div class="checkbox-container">
+                <label class="checkbox-option"><span class="radio-wrap-small"><input type="radio" name="item-20" value="OK" class="radio-hidden" /><span class="radio-box-small"></span></span><span class="checkbox-option-label">OK</span></label>
+                <label class="checkbox-option"><span class="radio-wrap-small"><input type="radio" name="item-20" value="Issue" class="radio-hidden" /><span class="radio-box-small"></span></span><span class="checkbox-option-label">Issue</span></label>
+                <label class="checkbox-option"><span class="radio-wrap-small"><input type="radio" name="item-20" value="N/A" class="radio-hidden" /><span class="radio-box-small"></span></span><span class="checkbox-option-label">N/A</span></label>
+            </div>
+        </div>
+        <div class="checklist-item">
+            <div class="item-text">No cross-bracing used as access (climbing on braces prohibited)</div>
+            <div class="checkbox-container">
+                <label class="checkbox-option"><span class="radio-wrap-small"><input type="radio" name="item-21" value="OK" class="radio-hidden" /><span class="radio-box-small"></span></span><span class="checkbox-option-label">OK</span></label>
+                <label class="checkbox-option"><span class="radio-wrap-small"><input type="radio" name="item-21" value="Issue" class="radio-hidden" /><span class="radio-box-small"></span></span><span class="checkbox-option-label">Issue</span></label>
+                <label class="checkbox-option"><span class="radio-wrap-small"><input type="radio" name="item-21" value="N/A" class="radio-hidden" /><span class="radio-box-small"></span></span><span class="checkbox-option-label">N/A</span></label>
+            </div>
+        </div>
+        <div class="checklist-item">
+            <div class="item-text">Access point clear of obstructions</div>
+            <div class="checkbox-container">
+                <label class="checkbox-option"><span class="radio-wrap-small"><input type="radio" name="item-22" value="OK" class="radio-hidden" /><span class="radio-box-small"></span></span><span class="checkbox-option-label">OK</span></label>
+                <label class="checkbox-option"><span class="radio-wrap-small"><input type="radio" name="item-22" value="Issue" class="radio-hidden" /><span class="radio-box-small"></span></span><span class="checkbox-option-label">Issue</span></label>
+                <label class="checkbox-option"><span class="radio-wrap-small"><input type="radio" name="item-22" value="N/A" class="radio-hidden" /><span class="radio-box-small"></span></span><span class="checkbox-option-label">N/A</span></label>
+            </div>
+        </div>
+    </div>
+
+    <!-- SECTION 5: OVERHEAD PROTECTION & CLEARANCES -->
+    <h2>5. Overhead Protection & Clearances</h2>
+    <div class="checklist-section">
+        <div class="checklist-item">
+            <div class="item-text">Overhead protection provided where falling object hazards exist</div>
+            <div class="checkbox-container">
+                <label class="checkbox-option"><span class="radio-wrap-small"><input type="radio" name="item-23" value="OK" class="radio-hidden" /><span class="radio-box-small"></span></span><span class="checkbox-option-label">OK</span></label>
+                <label class="checkbox-option"><span class="radio-wrap-small"><input type="radio" name="item-23" value="Issue" class="radio-hidden" /><span class="radio-box-small"></span></span><span class="checkbox-option-label">Issue</span></label>
+                <label class="checkbox-option"><span class="radio-wrap-small"><input type="radio" name="item-23" value="N/A" class="radio-hidden" /><span class="radio-box-small"></span></span><span class="checkbox-option-label">N/A</span></label>
+            </div>
+        </div>
+        <div class="checklist-item">
+            <div class="item-text">Minimum 10 ft clearance from power lines (or de-energized)</div>
+            <div class="checkbox-container">
+                <label class="checkbox-option"><span class="radio-wrap-small"><input type="radio" name="item-24" value="OK" class="radio-hidden" /><span class="radio-box-small"></span></span><span class="checkbox-option-label">OK</span></label>
+                <label class="checkbox-option"><span class="radio-wrap-small"><input type="radio" name="item-24" value="Issue" class="radio-hidden" /><span class="radio-box-small"></span></span><span class="checkbox-option-label">Issue</span></label>
+                <label class="checkbox-option"><span class="radio-wrap-small"><input type="radio" name="item-24" value="N/A" class="radio-hidden" /><span class="radio-box-small"></span></span><span class="checkbox-option-label">N/A</span></label>
+            </div>
+        </div>
+        <div class="checklist-item">
+            <div class="item-text">Barricades/warning tape if scaffold over walkways or work areas</div>
+            <div class="checkbox-container">
+                <label class="checkbox-option"><span class="radio-wrap-small"><input type="radio" name="item-25" value="OK" class="radio-hidden" /><span class="radio-box-small"></span></span><span class="checkbox-option-label">OK</span></label>
+                <label class="checkbox-option"><span class="radio-wrap-small"><input type="radio" name="item-25" value="Issue" class="radio-hidden" /><span class="radio-box-small"></span></span><span class="checkbox-option-label">Issue</span></label>
+                <label class="checkbox-option"><span class="radio-wrap-small"><input type="radio" name="item-25" value="N/A" class="radio-hidden" /><span class="radio-box-small"></span></span><span class="checkbox-option-label">N/A</span></label>
+            </div>
+        </div>
+        <div class="checklist-item">
+            <div class="item-text">Scaffold tagged with load rating and inspection status</div>
+            <div class="checkbox-container">
+                <label class="checkbox-option"><span class="radio-wrap-small"><input type="radio" name="item-26" value="OK" class="radio-hidden" /><span class="radio-box-small"></span></span><span class="checkbox-option-label">OK</span></label>
+                <label class="checkbox-option"><span class="radio-wrap-small"><input type="radio" name="item-26" value="Issue" class="radio-hidden" /><span class="radio-box-small"></span></span><span class="checkbox-option-label">Issue</span></label>
+                <label class="checkbox-option"><span class="radio-wrap-small"><input type="radio" name="item-26" value="N/A" class="radio-hidden" /><span class="radio-box-small"></span></span><span class="checkbox-option-label">N/A</span></label>
+            </div>
+        </div>
+    </div>
+
+    <!-- ALERT BOX -->
+    <div class="alert-box">
+        <div class="alert-text">⚠ TAG OUT SCAFFOLD if any critical deficiency is found. Attach "DO NOT USE" tag and notify supervisor immediately.</div>
+    </div>
+
+    <!-- OBSERVATIONS & NOTES -->
+    <div class="notes-section">
+        <h3>Deficiencies Noted & Corrective Actions Taken</h3>
+        <textarea class="notes-area" placeholder="Document any deficiencies, repairs made, or conditions requiring attention..."></textarea>
+    </div>
+
+    <!-- SIGNATURE SECTION -->
+    <div class="signature-section">
+        <div class="signature-box">
+            <span class="signature-label">Competent Person Signature:</span>
+            <div class="signature-line"></div>
+            <div class="info-field" style="margin-top: 12pt;">
+                <span class="info-label">Print Name:</span>
+                <input type="text" class="info-input" />
+            </div>
+            <div class="info-field">
+                <span class="info-label">Date & Time:</span>
+                <div class="date-time-row">
+                    <input type="date" class="info-input" />
+                    <input type="time" class="info-input" />
+                </div>
+            </div>
+        </div>
+        <div class="signature-box">
+            <span class="signature-label">Site Supervisor Review:</span>
+            <div class="signature-line"></div>
+            <div class="info-field" style="margin-top: 12pt;">
+                <span class="info-label">Print Name:</span>
+                <input type="text" class="info-input" />
+            </div>
+            <div class="info-field">
+                <span class="info-label">Date:</span>
+                <input type="date" class="info-input" />
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+        <div class="footer-grid">
+            <div>Page 1 of 1</div>
+            <div>Scaffolding Inspection Checklist</div>
+            <div>Version 1.0 - 2026</div>
+        </div>
+        <div style="margin-top: 8pt; font-size: 7pt;">
+            Aligned with OSHA 29 CFR 1926.451 - Scaffolds. Inspections must be performed by a competent person before each work shift
+            and after any occurrence that could affect structural integrity. This form is a documentation tool - verify current OSHA requirements at www.osha.gov.
+        </div>
+    </div>
+
+</form>
+
+<script src="script.js"></script>
+</body>
+</html>
