@@ -18,6 +18,74 @@
         return title.replace(/[^a-zA-Z0-9]+/g, '-').replace(/^-+|-+$/g, '');
     }
 
+    // ---------- Text fields that wrap onto a new line ----------
+    // Every text field is a <textarea> that grows as you type, so long text
+    // drops to the next line instead of running off in one straight line.
+    var textFields = Array.prototype.slice.call(document.querySelectorAll('#printable textarea'));
+
+    function autoGrow(t) {
+        if (!t.scrollHeight) return;               // field not visible right now
+        t.style.height = 'auto';
+        t.style.height = (t.scrollHeight + (t.offsetHeight - t.clientHeight)) + 'px';
+    }
+    function growAll() { textFields.forEach(autoGrow); }
+
+    textFields.forEach(function (t) {
+        t.addEventListener('input', function () { autoGrow(t); });
+        if (t.classList.contains('info-input')) {
+            // one-line style fields: wrap automatically, but no manual Enter line breaks
+            t.addEventListener('keydown', function (e) {
+                if (e.key === 'Enter') e.preventDefault();
+            });
+        }
+    });
+    window.addEventListener('resize', growAll);
+    window.addEventListener('load', growAll);
+    growAll();
+    document.getElementById('printable').addEventListener('reset', function () {
+        setTimeout(function () {
+            textFields.forEach(function (t) { t.style.height = ''; });
+            growAll();
+        }, 0);
+    });
+
+    // ---------- PDF: wrapped text instead of <textarea> ----------
+    // html2canvas draws <textarea> content on ONE line and can overflow the page.
+    // So the PDF is built from a copy of the form where every textarea is already
+    // a normal <div> that wraps its text. This is done BEFORE html2pdf measures the
+    // page breaks, so the breaks are calculated on the exact layout that gets
+    // captured (otherwise content can be cut in half at the page edge).
+    function buildPdfSource(root) {
+        var clone = root.cloneNode(true);
+        var live = root.querySelectorAll('textarea');
+        var copies = clone.querySelectorAll('textarea');
+        var keys = ['fontFamily', 'fontSize', 'fontWeight', 'lineHeight', 'color',
+                    'paddingTop', 'paddingRight', 'paddingBottom', 'paddingLeft',
+                    'borderTop', 'borderRight', 'borderBottom', 'borderLeft'];
+        Array.prototype.forEach.call(copies, function (c, i) {
+            var t = live[i];
+            var cs = window.getComputedStyle(t);
+            var d = document.createElement('div');
+            d.textContent = t.value;
+            var st = d.style;
+            keys.forEach(function (k) { st[k] = cs[k]; });
+            st.display = 'block';
+            st.boxSizing = 'border-box';
+            st.width = '100%';
+            st.maxWidth = '100%';
+            st.height = 'auto';
+            st.minHeight = t.offsetHeight + 'px';
+            st.margin = '0';
+            st.background = 'transparent';
+            st.whiteSpace = 'pre-wrap';
+            st.overflowWrap = 'anywhere';
+            st.wordBreak = 'break-word';
+            st.overflow = 'visible';
+            c.parentNode.replaceChild(d, c);
+        });
+        return clone;
+    }
+
     // ---------- Read a native date/time input into a friendly display string ----------
     function readValue(input) {
         if (!input) return '______________________';
@@ -44,7 +112,7 @@
     function fieldRowHtml(fieldEl) {
         var labelEl = fieldEl.querySelector('.info-label');
         var label = labelEl ? labelEl.textContent.trim() : '';
-        var input = fieldEl.querySelector('input');
+        var input = fieldEl.querySelector('input, textarea');
         return '<tr>' +
             '<td style="padding:3pt 6pt;font-weight:bold;width:35%;font-size:9pt;color:#555555;">' + esc(label) + '</td>' +
             '<td style="padding:3pt 6pt;border-bottom:1px solid #333333;">' + esc(readValue(input)) + '</td>' +
@@ -60,6 +128,7 @@
         btn.textContent = 'Preparing PDF…';
 
         var el = document.getElementById('printable');
+        var pdfSource = buildPdfSource(el);
 
         var opt = {
             margin: 0.4,
@@ -80,7 +149,7 @@
             pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
         };
 
-        html2pdf().set(opt).from(el).save().then(function () {
+        html2pdf().set(opt).from(pdfSource).save().then(function () {
             btn.disabled = false;
             btn.textContent = '⬇ Download PDF';
         }).catch(function (err) {
@@ -161,6 +230,8 @@
                     var labelEl = box.querySelector('.signature-label');
                     parts.push('<td style="width:50%;vertical-align:top;padding:8pt;border:1px dashed #999999;">');
                     parts.push('<p style="font-weight:bold;margin-bottom:16pt;">' + esc(labelEl ? labelEl.textContent.trim() : '') + '</p>');
+                    var sigEl = box.querySelector('.signature-input');
+                    parts.push('<p style="font-size:11pt;border-bottom:1px solid #333333;margin:0 0 8pt 0;">' + (sigEl && sigEl.value.trim() !== '' ? esc(sigEl.value) : '&nbsp;') + '</p>');
                     box.querySelectorAll('.info-field').forEach(function (f) {
                         var lab = f.querySelector('.info-label');
                         var labelText = lab ? lab.textContent.trim() : '';
@@ -174,7 +245,7 @@
                             });
                             valText = vals.length ? vals.join('  ') : '______________________';
                         } else {
-                            valText = readValue(f.querySelector('input'));
+                            valText = readValue(f.querySelector('input, textarea'));
                         }
                         parts.push('<p style="font-size:9pt;margin:2pt 0;"><b>' + esc(labelText) + '</b> ' + esc(valText) + '</p>');
                     });
@@ -188,7 +259,7 @@
         });
 
         return '<!DOCTYPE html><html><head><meta charset="utf-8">' +
-            '<title>' + esc('Excavation & Trenching Safety Inspection') + '</title></head>' +
+            '<title>' + esc('Scaffolding Inspection Checklist') + '</title></head>' +
             '<body style="font-family:Calibri,Arial,sans-serif;font-size:10.5pt;color:#343A40;">' +
             parts.join('') +
             '</body></html>';
